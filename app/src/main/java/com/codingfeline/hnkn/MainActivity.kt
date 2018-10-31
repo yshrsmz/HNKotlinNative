@@ -13,9 +13,13 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        api.fetchTopStories {
-            Log.d("MainActivity", "ids: $it")
+        api.fetchTopStoryIds { ids ->
+            Log.d("MainActivity", "ids: $ids")
             Log.d("MainActivity", "thread: ${Thread.currentThread().name}")
+
+            api.fetchStories(ids.subList(0, 10)) { stories ->
+                println(stories)
+            }
         }
     }
 }

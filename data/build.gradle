@@ -1,5 +1,6 @@
 plugins {
     id 'kotlin-multiplatform'
+    id 'kotlinx-serialization'
     id 'com.android.library'
 }
 repositories {
@@ -45,7 +46,10 @@ kotlin {
             dependencies {
                 implementation deps.kotlin.stdlib.common
                 implementation deps.kotlin.coroutines.common
+                implementation deps.kotlin.serialization.common
+
                 implementation deps.ktor.common
+                implementation deps.ktor.json
             }
         }
         commonTest {
@@ -58,7 +62,10 @@ kotlin {
             dependencies {
                 implementation deps.kotlin.stdlib.jdk
                 implementation deps.kotlin.coroutines.android
+                implementation deps.kotlin.serialization.jdk
+
                 implementation deps.ktor.android
+                implementation deps.ktor.jsonJvm
             }
         }
         androidTest {
@@ -70,7 +77,9 @@ kotlin {
         iosMain {
             dependencies {
                 implementation deps.kotlin.coroutines.native
+                implementation deps.kotlin.serialization.native
                 implementation deps.ktor.ios
+                implementation deps.ktor.jsonIos
             }
         }
         iosTest {
