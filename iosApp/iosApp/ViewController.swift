@@ -1,10 +1,17 @@
 import UIKit
-import app
+import data
 
 class ViewController: UIViewController {
+    let api = HNApi()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         label.text = Proxy().proxyHello()
+        
+        api.fetchTopStories { (ids) in
+            self.label.text = ids
+            return KotlinUnit()
+        }
     }
 
     override func didReceiveMemoryWarning() {

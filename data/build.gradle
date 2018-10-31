@@ -44,6 +44,8 @@ kotlin {
         commonMain {
             dependencies {
                 implementation deps.kotlin.stdlib.common
+                implementation deps.kotlin.coroutines.common
+                implementation deps.ktor.common
             }
         }
         commonTest {
@@ -55,6 +57,8 @@ kotlin {
         androidMain {
             dependencies {
                 implementation deps.kotlin.stdlib.jdk
+                implementation deps.kotlin.coroutines.android
+                implementation deps.ktor.android
             }
         }
         androidTest {
@@ -64,6 +68,10 @@ kotlin {
             }
         }
         iosMain {
+            dependencies {
+                implementation deps.kotlin.coroutines.native
+                implementation deps.ktor.ios
+            }
         }
         iosTest {
         }
@@ -91,8 +99,8 @@ task copyFramework {
         copy {
             from srcFile.parent
             into targetDir
-            include 'app.framework/**'
-            include 'app.framework.dSYM'
+            include 'data.framework/**'
+            include 'data.framework.dSYM'
         }
     }
 }

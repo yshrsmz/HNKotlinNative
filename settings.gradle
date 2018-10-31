@@ -9,4 +9,6 @@ pluginManagement {
 }
 rootProject.name = 'HNKotlinNative'
 
+enableFeaturePreview('GRADLE_METADATA')
+
 include ':data', ':app'
