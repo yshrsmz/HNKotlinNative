@@ -38,16 +38,16 @@ class HNApi {
         }
     }
 
+    suspend fun fetchStory(id: Int): Story {
+        return client.get<Story> {
+            url("https://hacker-news.firebaseio.com/v0/item/$id.json")
+        }
+    }
+
     @KtorExperimentalAPI
     fun fetchStories(ids: List<Int>, callback: (stories: List<Story>) -> Unit) {
         GlobalScope.apply {
-            val deferred = ids.map { id ->
-                async(ApplicationDispatcher) {
-                    client.get<Story> {
-                        url("https://hacker-news.firebaseio.com/v0/item/$id.json")
-                    }
-                }
-            }
+            val deferred = ids.map { id -> async(ApplicationDispatcher) { fetchStory(id) } }
 
             launch(ApplicationDispatcher) {
                 try {
