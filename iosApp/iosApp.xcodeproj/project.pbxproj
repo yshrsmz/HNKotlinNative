@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		44CE906F2190363D00E4E366 /* StoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CE906E2190363D00E4E366 /* StoryTableViewCell.swift */; };
+		44CE907121903DE000E4E366 /* StoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CE907021903DE000E4E366 /* StoryTableViewController.swift */; };
 		F861D7E1207FA40F0085E80D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F861D7E0207FA40F0085E80D /* AppDelegate.swift */; };
 		F861D7E3207FA40F0085E80D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F861D7E2207FA40F0085E80D /* ViewController.swift */; };
 		F861D7E6207FA40F0085E80D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F861D7E4207FA40F0085E80D /* Main.storyboard */; };
@@ -49,6 +51,8 @@
 
 /* Begin PBXFileReference section */
 		445C7836218975C600F1AFB3 /* data */ = {isa = PBXFileReference; lastKnownFileType = folder; name = data; path = ../data; sourceTree = "<group>"; };
+		44CE906E2190363D00E4E366 /* StoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryTableViewCell.swift; sourceTree = "<group>"; };
+		44CE907021903DE000E4E366 /* StoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryTableViewController.swift; sourceTree = "<group>"; };
 		F861D7DD207FA40F0085E80D /* iosApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iosApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F861D7E0207FA40F0085E80D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F861D7E2207FA40F0085E80D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -108,6 +112,8 @@
 				F861D7E4207FA40F0085E80D /* Main.storyboard */,
 				F861D7E9207FA4100085E80D /* LaunchScreen.storyboard */,
 				F861D7EC207FA4100085E80D /* Info.plist */,
+				44CE906E2190363D00E4E366 /* StoryTableViewCell.swift */,
+				44CE907021903DE000E4E366 /* StoryTableViewController.swift */,
 			);
 			path = iosApp;
 			sourceTree = "<group>";
@@ -258,7 +264,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				F861D7E3207FA40F0085E80D /* ViewController.swift in Sources */,
+				44CE907121903DE000E4E366 /* StoryTableViewController.swift in Sources */,
 				F861D7E1207FA40F0085E80D /* AppDelegate.swift in Sources */,
+				44CE906F2190363D00E4E366 /* StoryTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

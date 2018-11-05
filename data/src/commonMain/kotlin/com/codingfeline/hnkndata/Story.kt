@@ -14,7 +14,7 @@ data class Story(
     @Optional val dead: Boolean? = null,
     @Optional val parent: Int? = null,
     @Optional val poll: Int? = null,
-    val kids: List<Int>,
+    @Optional val kids: List<Int> = emptyList(),
     val url: String,
     val score: Int,
     val title: String,
