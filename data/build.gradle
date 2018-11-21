@@ -2,6 +2,7 @@ plugins {
     id 'kotlin-multiplatform'
     id 'kotlinx-serialization'
     id 'com.android.library'
+    id 'com.squareup.sqldelight'
 }
 repositories {
     google()
@@ -32,6 +33,12 @@ android {
     }
 }
 
+sqldelight {
+    packageName = "com.codingfeline.hnkndata"
+    sourceSet = files("src/commonMain/sqldelight")
+    schemaOutputDirectory = file("src/commonMain/sqldelight/databases")
+}
+
 kotlin {
     targets {
         fromPreset(presets.android, 'android')
@@ -50,6 +57,8 @@ kotlin {
 
                 implementation deps.ktor.common
                 implementation deps.ktor.json
+
+                implementation deps.sqldelight.runtimeCommon
             }
         }
         commonTest {
@@ -66,6 +75,8 @@ kotlin {
 
                 implementation deps.ktor.android
                 implementation deps.ktor.jsonJvm
+
+                implementation deps.sqldelight.runtimeJdk
             }
         }
         androidTest {
@@ -80,6 +91,8 @@ kotlin {
                 implementation deps.kotlin.serialization.native
                 implementation deps.ktor.ios
                 implementation deps.ktor.jsonIos
+
+                implementation deps.sqldelight.runtimeNative
             }
         }
         iosTest {

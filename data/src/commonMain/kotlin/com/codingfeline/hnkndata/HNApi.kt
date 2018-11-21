@@ -1,7 +1,7 @@
 package com.codingfeline.hnkndata
 
 import io.ktor.client.HttpClient
-import io.ktor.client.call.ReceivePipelineFail
+import io.ktor.client.call.ReceivePipelineException
 import io.ktor.client.features.json.JsonFeature
 import io.ktor.client.features.json.serializer.KotlinxSerializer
 import io.ktor.client.request.get
@@ -55,7 +55,7 @@ class HNApi {
 
                     println(stories)
                     callback(stories)
-                } catch (e: ReceivePipelineFail) {
+                } catch (e: ReceivePipelineException) {
                     println("error: $e, ${e.message}, ${e.cause}, ${e.info}")
                 }
             }
