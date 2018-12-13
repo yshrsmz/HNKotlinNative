@@ -30,18 +30,6 @@ class HNApi {
         return JSON.parse(IntSerializer.list, result)
     }
 
-    fun fetchTopStoryIds(callback: (ids: List<Int>) -> Unit) {
-        GlobalScope.apply {
-            launch(ApplicationDispatcher) {
-                val result: String = client.get {
-                    url("https://hacker-news.firebaseio.com/v0/topstories.json")
-                }
-                val ids = JSON.parse(IntSerializer.list, result)
-                callback(ids)
-            }
-        }
-    }
-
     private suspend fun fetchStory(id: Int): Story {
         return client.get<Story> {
             url("https://hacker-news.firebaseio.com/v0/item/$id.json")
