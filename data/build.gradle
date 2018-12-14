@@ -1,5 +1,6 @@
 plugins {
     id 'kotlin-multiplatform'
+//    kotlin('multiplatform') version versions.kotlin
     id 'kotlinx-serialization'
     id 'com.android.library'
 }
