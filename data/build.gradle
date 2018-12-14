@@ -52,7 +52,7 @@ kotlin {
         commonMain {
             dependencies {
                 implementation deps.kotlin.stdlib.common
-                implementation deps.kotlin.coroutines.common
+                api deps.kotlin.coroutines.common
                 implementation deps.kotlin.serialization.common
 
                 implementation deps.ktor.common
@@ -69,8 +69,9 @@ kotlin {
         }
         androidMain {
             dependencies {
-                implementation deps.kotlin.stdlib.jdk
-                implementation deps.kotlin.coroutines.android
+                api deps.kotlin.stdlib.jdk
+                api deps.kotlin.coroutines.jdk
+                api deps.kotlin.coroutines.android
                 implementation deps.kotlin.serialization.jdk
 
                 implementation deps.ktor.android

@@ -2,7 +2,7 @@ import UIKit
 import data
 
 class ViewController: UIViewController {
-    let api = HNApi()
+    let api = HNApiForIOS(hnApi: HNApi())
     
     override func viewDidLoad() {
         super.viewDidLoad()

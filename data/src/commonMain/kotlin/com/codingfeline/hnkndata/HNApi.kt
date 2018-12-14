@@ -7,10 +7,7 @@ import io.ktor.client.features.json.serializer.KotlinxSerializer
 import io.ktor.client.request.get
 import io.ktor.client.request.url
 import io.ktor.util.KtorExperimentalAPI
-import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.async
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import kotlinx.serialization.internal.IntSerializer
 import kotlinx.serialization.json.JSON
 import kotlinx.serialization.list
@@ -26,22 +23,27 @@ class HNApi {
         }
     }
 
-    fun fetchTopStoryIds(callback: (ids: List<Int>) -> Unit) {
-        GlobalScope.apply {
-            launch(ApplicationDispatcher) {
-                val result: String = client.get {
-                    url("https://hacker-news.firebaseio.com/v0/topstories.json")
-                }
-                val ids = JSON.parse(IntSerializer.list, result)
-                callback(ids)
-            }
+    suspend fun fetchTopStoryIds(): List<Int> {
+        val result = client.get<String> {
+            url("https://hacker-news.firebaseio.com/v0/topstories.json")
         }
+        return JSON.parse(IntSerializer.list, result)
     }
 
-    suspend fun fetchStory(id: Int): Story {
+    private suspend fun fetchStory(id: Int): Story {
         return client.get<Story> {
             url("https://hacker-news.firebaseio.com/v0/item/$id.json")
         }
+    }
+
+    suspend fun fetchStories(ids: List<Int>): List<Story> {
+        val deferredList = ids.map { id ->
+            coroutineScope {
+                async { fetchStory(id) }
+            }
+        }
+
+        return deferredList.awaitAll()
     }
 
     @KtorExperimentalAPI
@@ -60,16 +62,5 @@ class HNApi {
                 }
             }
         }
-//            launch(ApplicationDispatcher) {
-//                val results = ids.map { id ->
-//                    client.get<Story> {
-//                        url("https://hacker-news.firebaseio.com/v0/item/$id.json")
-//                    }
-//                }
-//
-//                println(results)
-//                callback(results)
-//            }
-
     }
 }

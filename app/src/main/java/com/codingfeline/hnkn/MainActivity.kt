@@ -4,22 +4,35 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.codingfeline.hnkndata.HNApi
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.launch
+
+private const val TAG = "MainActivity"
 
 class MainActivity : AppCompatActivity() {
 
     val api by lazy { HNApi() }
 
+    val job = SupervisorJob()
+
+    val uiScope = CoroutineScope(Dispatchers.Main + job)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        api.fetchTopStoryIds { ids ->
-            Log.d("MainActivity", "ids: $ids")
-            Log.d("MainActivity", "thread: ${Thread.currentThread().name}")
+        uiScope.launch {
+            val ids = api.fetchTopStoryIds()
+            val stories = api.fetchStories(ids.subList(0, 10))
 
-            api.fetchStories(ids.subList(0, 10)) { stories ->
-                println(stories)
-            }
+            Log.d(TAG, "$stories")
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        job.cancel()
     }
 }

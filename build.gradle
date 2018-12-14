@@ -3,11 +3,11 @@ apply plugin: 'com.github.ben-manes.versions'
 buildscript {
 
     ext.versions = [
-            'kotlin'             : '1.3.10',
+            'kotlin'             : '1.3.20-eap-25',
             'kotlinCoroutines'   : '1.0.1',
             'kotlinSerialization': '0.9.1',
             'sqldelight'         : '1.0.0-rc4',
-            'ktor'               : '1.0.0',
+            'ktor'               : '1.0.1',
             'timber'             : '5.0.0-kn0.9.3-a1',
     ]
     ext.deps = [
@@ -60,7 +60,10 @@ buildscript {
 
     repositories {
         google()
+        mavenCentral()
         jcenter()
+        maven { url 'https://dl.bintray.com/kotlin/ktor' }
+        maven { url "http://dl.bintray.com/kotlin/kotlin-eap" }
         maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
     }
     dependencies {
@@ -77,12 +80,13 @@ buildscript {
 allprojects {
     repositories {
         google()
-        jcenter()
         mavenCentral()
         maven { url 'https://dl.bintray.com/kotlin/kotlinx' }
         maven { url 'https://dl.bintray.com/kotlin/ktor' }
+        maven { url "http://dl.bintray.com/kotlin/kotlin-eap" }
         maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
         maven { url 'https://dl.bintray.com/touchlabpublic/kotlin' }
+        jcenter()
     }
 }
 
