@@ -23,6 +23,7 @@ class StoryTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         api.fetchTopStoryIds { (ids: [KotlinInt]) -> KotlinUnit in
+            NSLog("ids: \(ids.count)")
             self.api.fetchStories(ids: ids[0..<20].map { $0 }, callback: { (results: [Story]) in
                 self.stories += results
                 self.tableView.reloadData()

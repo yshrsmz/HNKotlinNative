@@ -13,6 +13,7 @@ class HNApiForIOS(
 
     fun fetchTopStoryIds(callback: (ids: List<Int>) -> Unit) {
         launch {
+            println("HNApiForIOS: fetchTopStoryIds")
             val ids = hnApi.fetchTopStoryIds()
             callback(ids)
         }
@@ -20,6 +21,7 @@ class HNApiForIOS(
 
     fun fetchStories(ids: List<Int>, callback: (stories: List<Story>) -> Unit) {
         launch {
+            println("HNApiForIOS: fetchTopStories")
             val stories = hnApi.fetchStories(ids)
             callback(stories)
         }
