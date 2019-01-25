@@ -34,14 +34,13 @@ android {
 }
 
 kotlin {
-    targets {
-        fromPreset(presets.android, 'android')
-        // This preset is for iPhone emulator
-        // Switch here to presets.iosArm64 (or iosArm32) to build library for iPhone device
-        fromPreset(presets.iosX64, 'ios') {
-            compilations.main.outputKinds('FRAMEWORK')
+    android()
+    iosX64('ios') {
+        binaries {
+            framework()
         }
     }
+
     sourceSets {
         commonMain {
             dependencies {
@@ -60,7 +59,7 @@ kotlin {
             }
         }
         androidMain {
-//            dependsOn commonMain
+            dependsOn commonMain
             dependencies {
                 api deps.kotlin.stdlib.jdk
                 api deps.kotlin.coroutines.jdk
@@ -72,7 +71,7 @@ kotlin {
             }
         }
         androidTest {
-//            dependsOn androidMain
+            dependsOn androidMain
             dependencies {
                 implementation deps.kotlin.test.jdk
                 implementation deps.kotlin.test.junit
@@ -81,7 +80,7 @@ kotlin {
             }
         }
         iosMain {
-//            dependsOn commonMain
+            dependsOn commonMain
             dependencies {
                 implementation deps.kotlin.coroutines.native
                 implementation deps.kotlin.serialization.native
@@ -108,10 +107,11 @@ configurations {
 task copyFramework {
     def buildType = project.findProperty("kotlin.build.type") ?: "DEBUG"
     def target = project.findProperty("kotlin.target") ?: "ios"
-    dependsOn "link${buildType.toLowerCase().capitalize()}Framework${target.capitalize()}"
+    def bin = kotlin.targets."$target".compilations.main.target.binaries.findFramework("", buildType)
+    dependsOn bin.linkTask
 
     doLast {
-        def srcFile = kotlin.targets."$target".compilations.main.getBinary("FRAMEWORK", buildType)
+        def srcFile = kotlin.targets."$target".compilations.main.target.binaries.findFramework("", buildType).outputFile
         def targetDir = getProperty("configuration.build.dir")
         copy {
             from srcFile.parent
