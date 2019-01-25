@@ -50,7 +50,7 @@ kotlin {
                 implementation deps.kotlin.serialization.common
 
                 implementation deps.ktor.core
-                implementation deps.ktor.json
+//                implementation deps.ktor.json
             }
         }
         commonTest {
@@ -60,7 +60,7 @@ kotlin {
             }
         }
         androidMain {
-            dependsOn commonMain
+//            dependsOn commonMain
             dependencies {
                 api deps.kotlin.stdlib.jdk
                 api deps.kotlin.coroutines.jdk
@@ -68,11 +68,11 @@ kotlin {
                 implementation deps.kotlin.serialization.jdk
 
                 implementation deps.ktor.android
-                implementation deps.ktor.jsonJvm
+//                implementation deps.ktor.jsonJvm
             }
         }
         androidTest {
-            dependsOn androidMain
+//            dependsOn androidMain
             dependencies {
                 implementation deps.kotlin.test.jdk
                 implementation deps.kotlin.test.junit
@@ -81,11 +81,13 @@ kotlin {
             }
         }
         iosMain {
+//            dependsOn commonMain
             dependencies {
                 implementation deps.kotlin.coroutines.native
                 implementation deps.kotlin.serialization.native
+
                 implementation deps.ktor.ios
-                implementation deps.ktor.jsonIos
+//                implementation deps.ktor.jsonIos
             }
         }
         iosTest {

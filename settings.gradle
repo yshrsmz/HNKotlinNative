@@ -1,8 +1,9 @@
 pluginManagement {
-//    repositories {
+    repositories {
 //        maven { setUrl("https://kotlin.bintray.com/kotlin-eap") }
-//        gradlePluginPortal()
-//    }
+        gradlePluginPortal()
+        mavenCentral()
+    }
     resolutionStrategy {
         eachPlugin {
             if (requested.id.id == "kotlin-multiplatform") {
