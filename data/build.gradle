@@ -50,7 +50,7 @@ kotlin {
                 implementation deps.kotlin.serialization.common
 
                 implementation deps.ktor.core
-//                implementation deps.ktor.json
+                implementation deps.ktor.json
             }
         }
         commonTest {
@@ -68,7 +68,7 @@ kotlin {
                 implementation deps.kotlin.serialization.jdk
 
                 implementation deps.ktor.android
-//                implementation deps.ktor.jsonJvm
+                implementation deps.ktor.jsonJvm
             }
         }
         androidTest {
@@ -87,7 +87,7 @@ kotlin {
                 implementation deps.kotlin.serialization.native
 
                 implementation deps.ktor.ios
-//                implementation deps.ktor.jsonIos
+                implementation deps.ktor.jsonIos
             }
         }
         iosTest {
