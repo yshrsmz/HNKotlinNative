@@ -12,6 +12,8 @@ class StoryTableViewController: UITableViewController {
     
     let api = HNApiForIOS(hnApi: HNApi())
     
+    let ghApi = GitHubApiForIOS(api: GitHubApi())
+    
     var stories = [Story]()
 
     override func viewDidLoad() {
@@ -29,6 +31,11 @@ class StoryTableViewController: UITableViewController {
                 self.tableView.reloadData()
                 return KotlinUnit()
             })
+            return KotlinUnit()
+        }
+        
+        ghApi.fetchUser { (user) in
+            NSLog("user: \(user?.login ?? "no.user")")
             return KotlinUnit()
         }
     }

@@ -70,6 +70,8 @@ buildscript {
         maven { url 'https://dl.bintray.com/kotlin/kotlinx' }
         maven { url 'https://dl.bintray.com/kotlin/ktor' }
         maven { url "http://dl.bintray.com/kotlin/kotlin-eap" }
+        maven { url "https://dl.bintray.com/yshrsmz/kgql" }
+        maven { url "file://$rootDir/../kgql/build/localMaven" }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.3.0'
@@ -78,6 +80,7 @@ buildscript {
         classpath "org.jetbrains.kotlin:kotlin-serialization:${versions.kotlin}"
 
         classpath 'com.github.ben-manes:gradle-versions-plugin:0.20.0'
+        classpath 'com.codingfeline.kgql:gradle-plugin:0.0.8-SNAPSHOT'
     }
 }
 allprojects {
@@ -87,12 +90,14 @@ allprojects {
         maven { url 'https://dl.bintray.com/kotlin/kotlinx' }
         maven { url 'https://dl.bintray.com/kotlin/ktor' }
         maven { url "http://dl.bintray.com/kotlin/kotlin-eap" }
+        maven { url "https://dl.bintray.com/yshrsmz/kgql" }
+        maven { url "file://$rootDir/../kgql/build/localMaven" }
         jcenter()
     }
 }
 
 wrapper {
-    gradleVersion = '4.10.2'
+    gradleVersion = '5.1'
     //noinspection UnnecessaryQualifiedReference
     distributionType = Wrapper.DistributionType.ALL
 }

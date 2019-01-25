@@ -3,6 +3,7 @@ plugins {
 //    kotlin('multiplatform') version versions.kotlin
     id 'kotlinx-serialization'
     id 'com.android.library'
+    id 'com.codingfeline.kgql'
 }
 repositories {
     google()
@@ -31,6 +32,13 @@ android {
             manifest.srcFile 'src/androidMain/AndroidManifest.xml'
         }
     }
+}
+
+kgql {
+    packageName = "com.codingfeline.github"
+    typeMapper = [
+            "Type": "com.codingfeline.github.Type"
+    ]
 }
 
 kotlin {

@@ -1,8 +1,8 @@
 package com.codingfeline.hnkndata
 
+import com.codingfeline.github.EnumTestDocument
+import com.codingfeline.github.Type
 import io.ktor.client.HttpClient
-import io.ktor.client.features.json.JsonFeature
-import io.ktor.client.features.json.serializer.KotlinxSerializer
 import io.ktor.client.request.get
 import io.ktor.client.request.url
 import kotlinx.coroutines.CoroutineDispatcher
@@ -17,11 +17,16 @@ internal expect val ApplicationDispatcher: CoroutineDispatcher
 
 class HNApi {
     private val client = HttpClient() {
-        install(JsonFeature) {
-            serializer = KotlinxSerializer().apply {
-                setMapper(Story::class, Story.serializer())
-            }
-        }
+        //        install(JsonFeature) {
+        //            serializer = KotlinxSerializer().apply {
+//                setMapper(Story::class, Story.serializer())
+//            }
+//    }
+    }
+
+    init {
+        val test = EnumTestDocument.UserQuery.requestBody(EnumTestDocument.UserQuery.Variables("yshrsmz", Type.BAR))
+        println("EnumTest: $test")
     }
 
     suspend fun fetchTopStoryIds(): List<Int> {
@@ -32,9 +37,9 @@ class HNApi {
     }
 
     private suspend fun fetchStory(id: Int): Story {
-        return client.get<Story> {
+        return client.get<String> {
             url("https://hacker-news.firebaseio.com/v0/item/$id.json")
-        }
+        }.let { JSON.parse(Story.serializer(), it) }
     }
 
     suspend fun fetchStories(ids: List<Int>): List<Story> {

@@ -9,7 +9,8 @@ class HNApiForIOS(
     private val hnApi: HNApi
 ) : CoroutineScope {
 
-    override val coroutineContext: CoroutineContext = ApplicationDispatcher + SupervisorJob()
+    private val job = SupervisorJob()
+    override val coroutineContext: CoroutineContext = ApplicationDispatcher + job
 
     fun fetchTopStoryIds(callback: (ids: List<Int>) -> Unit) {
         launch {
@@ -27,4 +28,7 @@ class HNApiForIOS(
         }
     }
 
+    fun dispose() {
+        job.cancel()
+    }
 }

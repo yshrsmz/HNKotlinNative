@@ -4,6 +4,8 @@ import data
 class ViewController: UIViewController {
     let api = HNApiForIOS(hnApi: HNApi())
     
+    let ghApi = GitHubApiForIOS(api: GitHubApi())
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -14,6 +16,11 @@ class ViewController: UIViewController {
                 self.label.text = stories[0].title
                 return KotlinUnit()
             })
+            return KotlinUnit()
+        }
+        
+        ghApi.fetchUser{ (user) in
+            NSLog("user: \(user?.login ?? "no.user")")
             return KotlinUnit()
         }
     }
