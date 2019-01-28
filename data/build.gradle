@@ -5,11 +5,6 @@ plugins {
     id 'com.android.library'
     id 'com.codingfeline.kgql'
 }
-repositories {
-    google()
-    jcenter()
-    mavenCentral()
-}
 
 android {
     compileSdkVersion 28
