@@ -1,0 +1,15 @@
+CREATE TABLE story (
+    id INTEGER NOT NULL PRIMARY KEY,
+    deleted INTEGER as Boolean NOT NULL DEFAULT 0,
+    type TEXT NOT NULL,
+    by TEXT NOT NULL,
+    time INTEGER NOT NULL,
+    text TEXT NOT NULL DEFAULT "",
+    dead INTEGER as Boolean NOT NULL DEFAULT 0,
+    parent INTEGER NOT NULL DEFAULT -1,
+    poll INTEGER NOT NULL DEFAULT -1,
+    url TEXT NOT NULL DEFAULT "",
+    score INTEGER NOT NULL DEFAULT 0,
+    title TEXT NOT NULL DEFAULT "",
+    descendants INTEGER NOT NULL DEFAULT -1
+);
