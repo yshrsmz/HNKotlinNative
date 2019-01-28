@@ -4,11 +4,6 @@ plugins {
     id 'kotlinx-serialization'
     id 'com.android.library'
 }
-repositories {
-    google()
-    jcenter()
-    mavenCentral()
-}
 
 android {
     compileSdkVersion 28

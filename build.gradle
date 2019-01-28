@@ -64,12 +64,29 @@ buildscript {
     ]
 
     repositories {
-        google()
-        mavenCentral()
-        jcenter()
-        maven { url 'https://dl.bintray.com/kotlin/kotlinx' }
-        maven { url 'https://dl.bintray.com/kotlin/ktor' }
-        maven { url "http://dl.bintray.com/kotlin/kotlin-eap" }
+        // prevent gradle from re-downloading kotlin/native's POM upon sync
+        // https://youtrack.jetbrains.com/issue/KT-28128
+        google().content() { excludeGroup "Kotlin/Native" }
+        mavenCentral().content() { excludeGroup "Kotlin/Native" }
+        jcenter().content() { excludeGroup "Kotlin/Native" }
+        maven {
+            url 'https://dl.bintray.com/kotlin/kotlinx'
+            content {
+                excludeGroup "Kotlin/Native"
+            }
+        }
+        maven {
+            url 'https://dl.bintray.com/kotlin/ktor'
+            content {
+                excludeGroup "Kotlin/Native"
+            }
+        }
+        maven {
+            url "http://dl.bintray.com/kotlin/kotlin-eap"
+            content {
+                excludeGroup "Kotlin/Native"
+            }
+        }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.3.0'
@@ -78,16 +95,32 @@ buildscript {
         classpath "org.jetbrains.kotlin:kotlin-serialization:${versions.kotlin}"
 
         classpath 'com.github.ben-manes:gradle-versions-plugin:0.20.0'
+        classpath 'com.codingfeline.kgql:gradle-plugin:0.0.8-SNAPSHOT'
     }
 }
 allprojects {
     repositories {
-        google()
-        mavenCentral()
-        maven { url 'https://dl.bintray.com/kotlin/kotlinx' }
-        maven { url 'https://dl.bintray.com/kotlin/ktor' }
-        maven { url "http://dl.bintray.com/kotlin/kotlin-eap" }
-        jcenter()
+        google().content() { excludeGroup "Kotlin/Native" }
+        mavenCentral().content() { excludeGroup "Kotlin/Native" }
+        maven {
+            url 'https://dl.bintray.com/kotlin/kotlinx'
+            content {
+                excludeGroup "Kotlin/Native"
+            }
+        }
+        maven {
+            url 'https://dl.bintray.com/kotlin/ktor'
+            content {
+                excludeGroup "Kotlin/Native"
+            }
+        }
+        maven {
+            url "http://dl.bintray.com/kotlin/kotlin-eap"
+            content {
+                excludeGroup "Kotlin/Native"
+            }
+        }
+        jcenter().content() { excludeGroup "Kotlin/Native" }
     }
 }
 
