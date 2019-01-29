@@ -9,7 +9,7 @@ class ViewController: UIViewController {
         
         api.fetchTopStoryIds { (ids) in
             NSLog("ids: \(ids.count)")
-            self.api.fetchStories(ids: ids[0..<10].map { $0 }, callback: { (stories: [Story]) in
+            self.api.fetchStories(ids: ids[0..<10].map { $0 }, callback: { (stories: [Story_]) in
                 NSLog("stories: \(stories.count)")
                 self.label.text = stories[0].title
                 return KotlinUnit()

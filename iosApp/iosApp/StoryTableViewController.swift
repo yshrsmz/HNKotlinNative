@@ -12,7 +12,7 @@ class StoryTableViewController: UITableViewController {
     
     let api = HNApiForIOS(hnApi: HNApi())
     
-    var stories = [Story]()
+    var stories = [Story_]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,7 +24,7 @@ class StoryTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         api.fetchTopStoryIds { (ids: [KotlinInt]) -> KotlinUnit in
             NSLog("ids: \(ids.count)")
-            self.api.fetchStories(ids: ids[0..<20].map { $0 }, callback: { (results: [Story]) in
+            self.api.fetchStories(ids: ids[0..<20].map { $0 }, callback: { (results: [Story_]) in
                 self.stories += results
                 self.tableView.reloadData()
                 return KotlinUnit()
